@@ -14,7 +14,7 @@ namespace DavidWCF
     // NOTE: In order to launch WCF Test Client for testing this service, please select User.svc or User.svc.cs at the Solution Explorer and start debugging.
     public class User : IUser
     {
-        public Stream Login(Credentials credentials) {
+        public Stream Login(Credentials LoginCredentials) {
 
             bool success;
 
@@ -22,12 +22,14 @@ namespace DavidWCF
             //StreamReader(xslDb.FileLocation).BaseStream;
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
 
-            string procedureName = "VerifyCredentials";
+            string procedureName = "[SECURITY].[VERIFYCREDENTIALS]";
 
-            Parameters.Add("username", credentials.username);
-            Parameters.Add("password", credentials.password);
+            Parameters.Add("username", LoginCredentials.username);
+            Parameters.Add("password", LoginCredentials.password);
 
-            success = Sql.RunProcedure(procedureName, Parameters);
+            Sql Database = new Sql();
+
+            success = Database.RunProcedure(procedureName, Parameters);
 
             byte[] bytearray = Encoding.UTF8.GetBytes(@"{ ""success"": """ + success.ToString() + @""" }");
 
@@ -36,6 +38,10 @@ namespace DavidWCF
             StreamReader reader = new StreamReader(stream);
 
             return reader.BaseStream;
+        }
+
+        public Stream AddUser(Credentials AddUserCredentials) {
+
         }
     }
 }
