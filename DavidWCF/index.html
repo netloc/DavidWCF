@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.widgets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.5.6/jquery.nicescroll.min.js"></script>
+
+    <script type="text/javascript">
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:52316/User.svc/test/login",
+            cache: false,
+            dataType: "json",
+            contentType: "application/json",
+            data: '{ "username": "david", "password": "davpass" }',
+            success: function (xml) {
+
+                alert('success' + xml)
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                
+
+            }
+        });
+    </script>
+</body>
+</html>
